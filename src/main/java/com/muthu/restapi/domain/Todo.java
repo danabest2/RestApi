@@ -2,6 +2,8 @@ package com.muthu.restapi.domain;
 
 import java.util.Date;
 
+import io.swagger.annotations.ApiModel;
+@ApiModel(description="Information about Todo Details")
 public class Todo {
 	private long id;
 	private String username;

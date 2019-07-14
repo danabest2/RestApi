@@ -19,6 +19,10 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.muthu.restapi.domain.Todo;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+
 
 
 @RestController
@@ -27,6 +31,14 @@ public class RestEntryEndPoint {
 	@Autowired
 	private HardCodedTodoService todoService;
 	
+	
+	@ApiOperation(value = "List All Details", response = List.class)
+	@ApiResponses(value = {
+	    @ApiResponse(code = 200, message = "Successfully retrieved list"),
+	    @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
+	    @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
+	    @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")
+	})
 	@GetMapping("users/{username}/todos")
 	public List<Todo> getAllTodos(@PathVariable String username) {
 		return todoService.findAll();
